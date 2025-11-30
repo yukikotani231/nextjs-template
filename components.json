@@ -3,14 +3,8 @@
   "style": "default",
   "rsc": true,
   "tsx": true,
-  "aliasConfig": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
   "aliases": {
-    "components": "./src/components",
-    "utils": "./src/lib/utils"
+    "components": "@/components",
+    "utils": "@/lib/utils"
   }
 }

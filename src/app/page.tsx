@@ -1,10 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ExampleFormComponent } from '@/components/ExampleFormComponent';
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24">
-      <div className="w-full max-w-2xl space-y-8">
+      <div className="w-full max-w-4xl space-y-8">
         <Card>
           <CardHeader className="text-center">
             <CardTitle className="text-4xl">Welcome to Next.js Template</CardTitle>
@@ -52,6 +53,19 @@ export default function Home() {
                 start building your application.
               </p>
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Form Example */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Form Example</CardTitle>
+            <CardDescription>
+              React Hook Form + Zod validation with shadcn/ui components
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex justify-center">
+            <ExampleFormComponent />
           </CardContent>
         </Card>
       </div>
