@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A modern Next.js template with built-in support for SSR/SSG, TypeScript, Tailwind CSS, shadcn/ui components, code quality tools (ESLint + Prettier), and automated CI/CD via GitHub Actions. Supports deployment to both Vercel and GitHub Pages.
+A modern Next.js template with built-in support for SSR/SSG, TypeScript, Tailwind CSS, shadcn/ui components, code quality tools (ESLint + Prettier), and automated CI/CD via GitHub Actions. Optimized for Vercel deployment.
 
 **Repository**: https://github.com/yukikotani231/nextjs-template
 
@@ -65,11 +65,6 @@ vercel --prod        # Deploy to production
 vercel env ls        # List environment variables
 ```
 
-**GitHub Pages**:
-
-- Automatic deployment on push to main via GitHub Actions
-- Built and deployed to `https://username.github.io/nextjs-template/`
-
 ## Project Architecture
 
 ### Tech Stack
@@ -79,9 +74,9 @@ vercel env ls        # List environment variables
 - **Styling**: Tailwind CSS
 - **UI Components**: shadcn/ui
 - **Form Handling**: React Hook Form + Zod validation
-- **Code Quality**: ESLint + Prettier
+- **Code Quality**: ESLint 9 + Prettier with pre-commit hooks
 - **CI/CD**: GitHub Actions (lint, format, type-check, build)
-- **Deployment**: Vercel (recommended) + GitHub Pages
+- **Deployment**: Vercel (recommended)
 - **Icon Library**: Lucide React
 
 ### Key Architectural Decisions
@@ -96,10 +91,9 @@ vercel env ls        # List environment variables
    - CI blocks merging if checks fail
    - Use `npm run format` and `npm run lint:fix` before committing
 
-3. **Deployment Dual Support**:
-   - **Vercel**: For dynamic features (serverless functions)
-   - **GitHub Pages**: For static sites (via `next export`)
-   - Both can be used simultaneously or choose one
+3. **Pre-commit Hooks**: Automated code quality checks
+   - husky + lint-staged for format and lint checks before commit
+   - Type-checking and build verification in CI only
 
 4. **Branch Protection**: Enforces PR-based workflow
    - No direct pushes to main
@@ -129,12 +123,11 @@ src/
     └── utils.ts                    # Utility functions (cn)
 .github/
 ├── workflows/
-│   ├── ci.yml                      # CI pipeline
-│   └── deploy-github-pages.yml     # GitHub Pages deploy
+│   └── ci.yml                      # CI pipeline
 ├── PULL_REQUEST_TEMPLATE.md        # PR template
 ├── BRANCH_PROTECTION.md            # Protection setup guide
 └── SHADCN_GUIDE.md                 # shadcn/ui guide
-.eslintrc.json                      # ESLint config
+eslint.config.mjs                   # ESLint config (ESLint 9)
 .prettierrc                         # Prettier config
 .nvmrc                              # Node.js version
 .editorconfig                       # Editor settings
@@ -192,29 +185,6 @@ NEXT_PUBLIC_API_URL=http://localhost:3000
 - Set in project settings
 - Use `NEXT_PUBLIC_` prefix for browser-accessible variables
 
-**GitHub Pages**:
-
-- Only static variables during build time
-- Set in workflow if needed
-
-### Vercel vs GitHub Pages
-
-**Use Vercel for:**
-
-- Dynamic APIs and serverless functions
-- Real-time data
-- Authentication
-- Server-side features
-
-**Use GitHub Pages for:**
-
-- Static sites
-- Documentation
-- Marketing pages
-- Cost-free hosting
-
-Can use both - choose primary and secondary based on needs.
-
 ## Deployment Configuration
 
 ### Vercel Setup
@@ -223,18 +193,6 @@ Can use both - choose primary and secondary based on needs.
 2. Vercel automatically detects Next.js
 3. Auto-deploys on push to main
 4. Environment variables via Vercel dashboard
-
-### GitHub Pages Setup
-
-1. Enable GitHub Pages in repository settings
-2. Set source to "GitHub Actions"
-3. Workflow `deploy-github-pages.yml` auto-deploys
-4. Available at `https://username.github.io/nextjs-template/`
-
-**For custom domain:**
-
-- Add domain in GitHub Pages settings
-- Update `NEXT_PUBLIC_BASE_PATH` in workflow if needed
 
 ## shadcn/ui Components
 

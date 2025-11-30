@@ -14,7 +14,6 @@ A modern, production-ready Next.js template with built-in support for SSR/SSG, c
 - ✅ **GitHub Actions CI** - Lint, format, type-check, and build verification
 - ✅ **Branch Protection** - Enforce PR workflow
 - ✅ **Vercel Deployment** - One-click deployment
-- ✅ **GitHub Pages** - Static export support for github.io
 - ✅ **PR Templates** - Standardized pull request format
 
 ## Quick Start
@@ -76,11 +75,10 @@ nextjs-template/
 │       └── globals.css         # Global styles
 ├── .github/
 │   ├── workflows/
-│   │   ├── ci.yml             # CI pipeline
-│   │   └── deploy-github-pages.yml # GitHub Pages deploy
+│   │   └── ci.yml             # CI pipeline
 │   ├── PULL_REQUEST_TEMPLATE.md
 │   └── BRANCH_PROTECTION.md
-├── .eslintrc.json              # ESLint config
+├── eslint.config.mjs            # ESLint config (ESLint 9)
 ├── .prettierrc                  # Prettier config
 ├── tailwind.config.ts          # Tailwind config
 ├── tsconfig.json               # TypeScript config
@@ -101,22 +99,6 @@ nextjs-template/
 npm install -g vercel
 vercel --prod
 ```
-
-### GitHub Pages
-
-GitHub Pages deployment is automated via `deploy-github-pages.yml` workflow.
-
-1. Enable GitHub Pages in repository settings
-2. Set source to "GitHub Actions"
-3. Push to main branch - deployment runs automatically
-
-**Note**: For GitHub Pages, your site will be available at:
-
-```
-https://YOUR_USERNAME.github.io/nextjs-template/
-```
-
-If using custom domain, update the `NEXT_PUBLIC_BASE_PATH` in the workflow.
 
 ## Development Workflow
 
