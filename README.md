@@ -7,6 +7,7 @@ A modern, production-ready Next.js template with built-in support for SSR/SSG, c
 - ✅ **Next.js 15** with App Router
 - ✅ **TypeScript** for type safety
 - ✅ **Tailwind CSS** for styling
+- ✅ **shadcn/ui** - Pre-built, high-quality components
 - ✅ **SSR/SSG Support** - Choose rendering strategy per route
 - ✅ **Prettier + ESLint** - Automatic code formatting and linting
 - ✅ **GitHub Actions CI** - Lint, format, type-check, and build verification
@@ -192,6 +193,38 @@ For production (Vercel dashboard):
 For GitHub Pages:
 
 - Edit the `deploy-github-pages.yml` workflow if needed
+
+## shadcn/ui Components
+
+This template comes with shadcn/ui pre-configured. See [.github/SHADCN_GUIDE.md](.github/SHADCN_GUIDE.md) for detailed usage instructions.
+
+### Using Components
+
+```tsx
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+export default function MyComponent() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Hello</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button>Click me</Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+### Adding More Components
+
+Install components from the [shadcn/ui library](https://ui.shadcn.com):
+
+```bash
+npx shadcn-ui@latest add select input dialog
+```
 
 ## Configuration
 

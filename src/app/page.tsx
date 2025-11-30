@@ -1,25 +1,59 @@
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Next.js Template</h1>
-        <p className="text-xl text-gray-600 mb-8">
-          A modern template with SSR/SSG, Prettier, ESLint, and GitHub Actions CI
-        </p>
-        <div className="flex gap-4 justify-center">
-          <a
-            href="https://nextjs.org"
-            className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-          >
-            Next.js Docs
-          </a>
-          <a
-            href="https://tailwindcss.com"
-            className="px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600"
-          >
-            Tailwind CSS
-          </a>
-        </div>
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24">
+      <div className="w-full max-w-2xl space-y-8">
+        <Card>
+          <CardHeader className="text-center">
+            <CardTitle className="text-4xl">Welcome to Next.js Template</CardTitle>
+            <CardDescription className="text-lg">
+              A modern template with shadcn/ui, Tailwind CSS, and everything you need
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold">Features</h2>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>✅ Next.js 15 with App Router</li>
+                <li>✅ TypeScript for type safety</li>
+                <li>✅ Tailwind CSS for styling</li>
+                <li>✅ shadcn/ui component library</li>
+                <li>✅ SSR/SSG/ISR support per route</li>
+                <li>✅ Prettier + ESLint configured</li>
+                <li>✅ GitHub Actions CI/CD</li>
+                <li>✅ Vercel & GitHub Pages deployment</li>
+              </ul>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button asChild className="flex-1">
+                <a href="https://nextjs.org/docs" target="_blank" rel="noopener noreferrer">
+                  Next.js Docs
+                </a>
+              </Button>
+              <Button asChild variant="outline" className="flex-1">
+                <a href="https://ui.shadcn.com" target="_blank" rel="noopener noreferrer">
+                  shadcn/ui
+                </a>
+              </Button>
+              <Button asChild variant="secondary" className="flex-1">
+                <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">
+                  Tailwind CSS
+                </a>
+              </Button>
+            </div>
+
+            <div className="border-t pt-4">
+              <h3 className="mb-2 font-semibold">Get Started</h3>
+              <p className="text-sm text-muted-foreground">
+                Edit <code className="rounded bg-muted px-1.5 py-0.5">src/app/page.tsx</code> to
+                start building your application.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </main>
   );

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A modern Next.js template with built-in support for SSR/SSG, TypeScript, Tailwind CSS, code quality tools (ESLint + Prettier), and automated CI/CD via GitHub Actions. Supports deployment to both Vercel and GitHub Pages.
+A modern Next.js template with built-in support for SSR/SSG, TypeScript, Tailwind CSS, shadcn/ui components, code quality tools (ESLint + Prettier), and automated CI/CD via GitHub Actions. Supports deployment to both Vercel and GitHub Pages.
 
 **Repository**: https://github.com/yukikotani231/nextjs-template
 
@@ -77,9 +77,11 @@ vercel env ls        # List environment variables
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
 - **Code Quality**: ESLint + Prettier
 - **CI/CD**: GitHub Actions (lint, format, type-check, build)
 - **Deployment**: Vercel (recommended) + GitHub Pages
+- **Icon Library**: Lucide React
 
 ### Key Architectural Decisions
 
@@ -108,17 +110,28 @@ vercel env ls        # List environment variables
 ```
 src/
 ├── app/                            # Next.js App Router
-│   ├── page.tsx                    # Home page (SSG example)
+│   ├── page.tsx                    # Home page (using shadcn/ui)
 │   ├── layout.tsx                  # Root layout
-│   └── globals.css                 # Global styles
+│   └── globals.css                 # Global styles + CSS variables
+├── components/
+│   └── ui/                         # shadcn/ui components
+│       ├── button.tsx
+│       └── card.tsx
+└── lib/
+    └── utils.ts                    # Utility functions (cn)
 .github/
 ├── workflows/
 │   ├── ci.yml                      # CI pipeline
 │   └── deploy-github-pages.yml     # GitHub Pages deploy
 ├── PULL_REQUEST_TEMPLATE.md        # PR template
-└── BRANCH_PROTECTION.md            # Protection setup guide
+├── BRANCH_PROTECTION.md            # Protection setup guide
+└── SHADCN_GUIDE.md                 # shadcn/ui guide
 .eslintrc.json                      # ESLint config
 .prettierrc                         # Prettier config
+.nvmrc                              # Node.js version
+.editorconfig                       # Editor settings
+.npmrc                              # npm config
+components.json                     # shadcn/ui config
 tailwind.config.ts                  # Tailwind CSS config
 next.config.ts                      # Next.js config
 vercel.json                         # Vercel config
@@ -214,6 +227,46 @@ Can use both - choose primary and secondary based on needs.
 
 - Add domain in GitHub Pages settings
 - Update `NEXT_PUBLIC_BASE_PATH` in workflow if needed
+
+## shadcn/ui Components
+
+This template comes with shadcn/ui pre-configured. See [.github/SHADCN_GUIDE.md](.github/SHADCN_GUIDE.md) for comprehensive usage guide.
+
+### Using Components
+
+```tsx
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+export default function MyComponent() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Component Title</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button variant="outline">Click me</Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+### Adding Components
+
+Install from shadcn/ui library:
+
+```bash
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add card input select dialog
+```
+
+### Available UI Utilities
+
+- `src/lib/utils.ts` - `cn()` function for class merging
+- `components.json` - shadcn/ui configuration
+- CSS variables in `src/app/globals.css` - Customizable theme colors
+- Dark mode support - Defined in `.dark` class
 
 ## Common Development Patterns
 
