@@ -10,7 +10,7 @@
     "lint:fix": "next lint --fix",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
-    "export": "next build && next export",
+    "export": "next build",
     "prepare": "husky"
   },
   "dependencies": {
@@ -46,12 +46,6 @@
     "typescript": "^5.7.2"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.{json,md,css}": [
-      "prettier --write"
-    ]
+    "*.{ts,tsx,js,jsx,json,md,css}": "prettier --write"
   }
 }
