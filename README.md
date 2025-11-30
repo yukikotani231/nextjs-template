@@ -8,6 +8,7 @@ A modern, production-ready Next.js template with built-in support for SSR/SSG, c
 - ✅ **TypeScript** for type safety
 - ✅ **Tailwind CSS** for styling
 - ✅ **shadcn/ui** - Pre-built, high-quality components
+- ✅ **React Hook Form + Zod** - Form handling & validation
 - ✅ **SSR/SSG Support** - Choose rendering strategy per route
 - ✅ **Prettier + ESLint** - Automatic code formatting and linting
 - ✅ **GitHub Actions CI** - Lint, format, type-check, and build verification
@@ -225,6 +226,71 @@ Install components from the [shadcn/ui library](https://ui.shadcn.com):
 ```bash
 npx shadcn-ui@latest add select input dialog
 ```
+
+## Form Handling
+
+This template includes **React Hook Form** and **Zod** for robust form handling and validation.
+
+### Form Example
+
+```tsx
+'use client';
+
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+
+const schema = z.object({
+  email: z.string().email('Invalid email address'),
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+});
+
+type FormValues = z.infer<typeof schema>;
+
+export function MyForm() {
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { email: '', name: '' },
+  });
+
+  function onSubmit(values: FormValues) {
+    console.log('Form data:', values);
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
+  );
+}
+```
+
+See `src/components/ExampleFormComponent.tsx` for a complete example with select, textarea, and checkbox components.
 
 ## Configuration
 

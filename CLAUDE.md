@@ -78,6 +78,7 @@ vercel env ls        # List environment variables
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **UI Components**: shadcn/ui
+- **Form Handling**: React Hook Form + Zod validation
 - **Code Quality**: ESLint + Prettier
 - **CI/CD**: GitHub Actions (lint, format, type-check, build)
 - **Deployment**: Vercel (recommended) + GitHub Pages
@@ -114,9 +115,16 @@ src/
 │   ├── layout.tsx                  # Root layout
 │   └── globals.css                 # Global styles + CSS variables
 ├── components/
+│   ├── ExampleFormComponent.tsx    # Example form with validation
 │   └── ui/                         # shadcn/ui components
 │       ├── button.tsx
-│       └── card.tsx
+│       ├── card.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── form.tsx                # React Hook Form integration
+│       ├── textarea.tsx
+│       ├── select.tsx
+│       └── checkbox.tsx
 └── lib/
     └── utils.ts                    # Utility functions (cn)
 .github/
